@@ -32,7 +32,7 @@ public class BaseScreen implements Screen, InputProcessor {
         batch = new SpriteBatch();
         batch.getProjectionMatrix().idt(); /*возвращает матрицу, idt - заполняет единичками*/
         screenBounds = new Rect();
-        glBounds = new Rect(0, 0, 0.5f, 0.5f);
+        glBounds = new Rect(0, 0, 1f, 1f);
         worldBounds = new Rect();
         worldToGl = new Matrix4();
         screenToWorld = new Matrix3();
