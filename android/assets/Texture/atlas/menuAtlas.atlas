@@ -1,0 +1,31 @@
+
+menuAtlas.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+star
+  rotate: false
+  xy: 1, 203
+  size: 1000, 800
+  orig: 1000, 800
+  offset: 0, 0
+  index: -1
+stopButton
+  rotate: false
+  xy: 1, 1
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: -1
+
+menuAtlas2.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+startButton
+  rotate: false
+  xy: 1, 1
+  size: 860, 900
+  orig: 860, 900
+  offset: 0, 0
+  index: -1
