@@ -118,12 +118,11 @@ public class BaseScreen implements Screen, InputProcessor {
         touchUp(tourch, pointer, button);
         return false;
     }
+
     public boolean touchUp(Vector2 tourch, int pointer, int button) {
         System.out.println("touchDragged tourchX = " + tourch.x + " touchDragged tourchy = " + tourch.y);
         return false;
     }
-
-
 
     @Override
     public boolean touchDragged(int screenX, int screenY, int pointer) {
@@ -131,6 +130,7 @@ public class BaseScreen implements Screen, InputProcessor {
         touchDragged(tourch, pointer);
         return false;
     }
+
     public boolean touchDragged(Vector2 tourch, int pointer) {
         System.out.println("touchDragged tourchX = " + tourch.x + " touchDragged tourchy = " + tourch.y);
         return false;

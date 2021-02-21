@@ -1,27 +1,32 @@
 package ru.geekbrains.Screen;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import ru.geekbrains.base.BaseScreen;
 import ru.geekbrains.math.Rect;
+import ru.geekbrains.pull.BulletPull;
 import ru.geekbrains.sprite.Backgraund;
-import ru.geekbrains.sprite.Ship;
+import ru.geekbrains.sprite.MainShip;
 import ru.geekbrains.sprite.Star;
 
 public class GameScreene extends BaseScreen {
 
     private static final int STAR_COUNT = 64;
 
+    private Music music;
+
     private Texture imgBackgraund;
     private TextureAtlas atlas;
 
     private Backgraund backgraund;
-    private Ship ship;
-    private TextureRegion region;
+    private MainShip mainShip;
+
+    private BulletPull bulletPull;
 
     private Star[] stars;
 
@@ -36,47 +41,36 @@ public class GameScreene extends BaseScreen {
         for (int i = 0; i < STAR_COUNT; i++) {
             stars[i] = new Star(atlas);
         }
-        region = new TextureRegion(new TextureAtlas(Gdx.files.internal("Texture/atlas/mainAtlas.tpack")).
-                findRegion("main_ship"),
-                0,0, (new TextureAtlas(Gdx.files.internal("Texture/atlas/mainAtlas.tpack")).
-                findRegion("main_ship").getRegionWidth() / 2)
-                ,new TextureAtlas(Gdx.files.internal("Texture/atlas/mainAtlas.tpack")).
-                findRegion("main_ship").getRegionHeight());
-
-        ship = new Ship(region);
+        bulletPull = new BulletPull();
+        mainShip = new MainShip(atlas, bulletPull);
+        setMusic();
+//        region = new TextureRegion(new TextureAtlas(Gdx.files.internal("Texture/atlas/mainAtlas.tpack")).
+//                findRegion("main_ship"),
+//                0, 0, (new TextureAtlas(Gdx.files.internal("Texture/atlas/mainAtlas.tpack")).
+//                findRegion("main_ship").getRegionWidth() / 2)
+//                , new TextureAtlas(Gdx.files.internal("Texture/atlas/mainAtlas.tpack")).
+//                findRegion("main_ship").getRegionHeight());
 
     }
 
-    @Override
-    public void render(float delta) {
-        update(delta);
-        draw();
-    }
-
-    @Override
-    public void resize(Rect worldBounds) {
-
-        backgraund.resize(worldBounds);
-        for (Star star : stars) {
-            star.resize(worldBounds);
-        }
-        ship.resize(worldBounds);
-    }
-
-    @Override
-    public void dispose() {
-
-        atlas.dispose();
-        imgBackgraund.dispose();
-        super.dispose();
-
+    private void setMusic() {
+        music = Gdx.audio.newMusic(Gdx.files.internal("sounds/PPK _resurrection.mp3"));
+        music.setLooping(true);
+        music.setVolume(0.01f);
+        music.play();
     }
 
     private void update(float delta) {
         for (Star star : stars) {
             star.update(delta);
         }
-        ship.update(delta);
+        mainShip.update(delta);
+        bulletPull.updateActiveSprites(delta);
+    }
+
+    private void freeAllDestroed() {
+
+        bulletPull.freeAllDestroyedActiveSprites();
     }
 
     private void draw() {
@@ -88,32 +82,65 @@ public class GameScreene extends BaseScreen {
         for (Star star : stars) {
             star.draw(batch);
         }
-        ship.draw(batch);
-        batch.draw(region,0,0);
+        mainShip.draw(batch);
+        bulletPull.drawActiveSprites(batch);
         batch.end();
+    }
+
+    @Override
+    public void render(float delta) {
+        update(delta);
+        freeAllDestroed();
+        draw();
+    }
+
+    @Override
+    public void resize(Rect worldBounds) {
+
+        backgraund.resize(worldBounds);
+        for (Star star : stars) {
+            star.resize(worldBounds);
+        }
+        mainShip.resize(worldBounds);
+    }
+
+    @Override
+    public void dispose() {
+
+        atlas.dispose();
+        imgBackgraund.dispose();
+        bulletPull.dispose();
+        music.dispose();
+        mainShip.dispose();
+        super.dispose();
     }
 
     @Override
     public boolean keyDown(int keycode) {
 
-        ship.keyDown(keycode);
+        mainShip.keyDown(keycode);
         return false;
     }
 
     @Override
     public boolean keyUp(int keycode) {
 
-        ship.keyUp(keycode);
+        mainShip.keyUp(keycode);
         return false;
     }
 
     @Override
     public boolean touchDown(Vector2 tourch, int pointer, int button) {
+
+        mainShip.touchDown(tourch, pointer, button);
         return false;
     }
 
     @Override
     public boolean touchUp(Vector2 tourch, int pointer, int button) {
+
+        mainShip.touchUp(tourch, pointer, button);
         return false;
     }
 }
+

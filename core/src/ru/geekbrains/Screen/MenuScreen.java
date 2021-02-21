@@ -14,9 +14,6 @@ public class MenuScreen extends BaseScreen {
 
     private static final int STAR_COUNT = 256;
 
-//    private Texture img;
-//    private Logo logo;
-
     private Texture imgbackgraund;
     private Backgraund backgraund;
     private TextureAtlas atlas;
@@ -36,9 +33,6 @@ public class MenuScreen extends BaseScreen {
 
     @Override
     public void show() {
-
-//        img = new Texture("Texture/pikachu.jpg");
-//        logo = new Logo(img);
 
         super.show();
         imgbackgraund = new Texture("Texture/bg.png");
@@ -62,7 +56,6 @@ public class MenuScreen extends BaseScreen {
     @Override
     public void dispose() {
 
-//        img.dispose();
         imgbackgraund.dispose();
         atlas.dispose();
         super.dispose();
@@ -71,7 +64,6 @@ public class MenuScreen extends BaseScreen {
     @Override
     public void resize(Rect worldBounds) {
 
-//        logo.resize(worldBounds);
         backgraund.resize(worldBounds);
         for (Star star : stars) {
             star.resize(worldBounds);
@@ -82,7 +74,6 @@ public class MenuScreen extends BaseScreen {
 
     public void update(float delta) {
 
-//        logo.update(delta);
         for (Star star : stars) {
             star.update(delta);
         }
@@ -90,7 +81,6 @@ public class MenuScreen extends BaseScreen {
 
     public void draw() {
 
-//        logo.draw(batch);
         Gdx.gl.glClearColor(0.1f, 0.2f, 0.3f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         batch.begin();
@@ -108,7 +98,6 @@ public class MenuScreen extends BaseScreen {
 
         buttonExit.touchDown(tourch, pointer, button);
         buttonPlay.touchDown(tourch, pointer, button);
-//        logo.touchDown(tourch, pointer, button);
         return false;
     }
 
