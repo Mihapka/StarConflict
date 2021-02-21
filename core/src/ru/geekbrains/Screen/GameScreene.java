@@ -2,7 +2,6 @@ package ru.geekbrains.Screen;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -11,6 +10,7 @@ import ru.geekbrains.base.BaseScreen;
 import ru.geekbrains.math.Rect;
 import ru.geekbrains.pull.BulletPull;
 import ru.geekbrains.sprite.Backgraund;
+import ru.geekbrains.sprite.EnemiShip;
 import ru.geekbrains.sprite.MainShip;
 import ru.geekbrains.sprite.Star;
 
@@ -25,6 +25,7 @@ public class GameScreene extends BaseScreen {
 
     private Backgraund backgraund;
     private MainShip mainShip;
+    private EnemiShip enemiShip;
 
     private BulletPull bulletPull;
 
@@ -43,6 +44,7 @@ public class GameScreene extends BaseScreen {
         }
         bulletPull = new BulletPull();
         mainShip = new MainShip(atlas, bulletPull);
+        enemiShip = new EnemiShip(atlas,bulletPull);
         setMusic();
 //        region = new TextureRegion(new TextureAtlas(Gdx.files.internal("Texture/atlas/mainAtlas.tpack")).
 //                findRegion("main_ship"),
@@ -56,7 +58,7 @@ public class GameScreene extends BaseScreen {
     private void setMusic() {
         music = Gdx.audio.newMusic(Gdx.files.internal("sounds/PPK _resurrection.mp3"));
         music.setLooping(true);
-        music.setVolume(0.01f);
+        music.setVolume(0.02f);
         music.play();
     }
 
@@ -65,6 +67,7 @@ public class GameScreene extends BaseScreen {
             star.update(delta);
         }
         mainShip.update(delta);
+        enemiShip.update(delta);
         bulletPull.updateActiveSprites(delta);
     }
 
@@ -83,6 +86,7 @@ public class GameScreene extends BaseScreen {
             star.draw(batch);
         }
         mainShip.draw(batch);
+        enemiShip.draw(batch);
         bulletPull.drawActiveSprites(batch);
         batch.end();
     }
@@ -102,6 +106,7 @@ public class GameScreene extends BaseScreen {
             star.resize(worldBounds);
         }
         mainShip.resize(worldBounds);
+        enemiShip.resize(worldBounds);
     }
 
     @Override
@@ -112,6 +117,7 @@ public class GameScreene extends BaseScreen {
         bulletPull.dispose();
         music.dispose();
         mainShip.dispose();
+        enemiShip.dispose();
         super.dispose();
     }
 
