@@ -21,7 +21,9 @@ public class MatrixUtils {
     public static void calcTransitionMatrix(Matrix4 mat, Rect src, Rect dst) {
         float scaleX = dst.getWidth() / src.getWidth();
         float scaleY = dst.getHeight() / src.getHeight();
-        mat.idt().translate(dst.pos.x, dst.pos.y, 0f).scale(scaleX, scaleY, 1f).translate(-src.pos.x, -src.pos.y, 0f);
+        mat.idt().translate(dst.pos.x, dst.pos.y, 0f)
+                .scale(scaleX, scaleY, 1f)
+                .translate(-src.pos.x, -src.pos.y, 0f);
     }
 
     /**
