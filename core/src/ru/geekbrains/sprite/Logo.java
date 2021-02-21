@@ -9,7 +9,8 @@ import ru.geekbrains.math.Rect;
 public class Logo extends Sprite {
 
     private static final float LEN = 0.01f;
-    private static final float HIGHT = 0.1f;
+    private static final float HIGHT = 0.02f;
+
 
     private Vector2 logoTouch;
     private Vector2 v;
