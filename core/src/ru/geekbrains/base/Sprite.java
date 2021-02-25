@@ -9,25 +9,26 @@ import ru.geekbrains.utils.Regions;
 public class Sprite extends Rect {
 
     protected float angle;
-    protected float scale =2f;
+    protected float scale = 2f;
     protected TextureRegion[] regions;
     protected int frame;
     private boolean isDestroyed;
 
-    public Sprite(){}
+    public Sprite() {
+    }
 
     public Sprite(TextureRegion region) {
 
-        if (region==null){
+        if (region == null) {
             throw new RuntimeException("Region is NULL");
         }
         regions = new TextureRegion[1];
         regions[0] = region;
     }
 
-    public Sprite(TextureRegion region, int rows, int cols, int frame){
+    public Sprite(TextureRegion region, int rows, int cols, int frame) {
 
-        if (region==null){
+        if (region == null) {
             throw new RuntimeException("Region is NULL");
         }
         regions = Regions.split(region, rows, cols, frame);
@@ -36,19 +37,21 @@ public class Sprite extends Rect {
 
     public void setHightProportions(float height) {
 
+
+
         setHeight(height);
-        float aspect = regions[frame].getRegionWidth() / (float) regions[frame].getRegionHeight();
+        float aspect = regions[frame].getRegionWidth() /(float) regions[frame].getRegionHeight();
         setWidth(height * aspect);
     }
 
     public void draw(SpriteBatch batch) {
 
-        batch.draw(regions[frame],
+        batch.draw(
+                regions[frame],
                 getLeft(), getBottom(),
                 halfWidth, halfHeight,
                 getWidth(), getHeight(),
-                scale, scale,
-                angle);
+                scale, scale, angle);
     }
 
     public void update(float delta) {
@@ -60,17 +63,14 @@ public class Sprite extends Rect {
     }
 
     public boolean touchUp(Vector2 tourch, int pointer, int button) {
-        System.out.println("tourchUp tourchX = " + tourch.x + " tourchUp tourchy = " + tourch.y);
         return false;
     }
 
     public boolean touchDown(Vector2 tourch, int pointer, int button) {
-        System.out.println("tourchUp tourchX = " + tourch.x + " tourchUp tourchy = " + tourch.y);
         return false;
     }
 
     public boolean touchDragged(Vector2 tourch, int pointer, int button) {
-        System.out.println("tourchUp tourchX = " + tourch.x + " tourchUp tourchy = " + tourch.y);
         return false;
     }
 
@@ -90,18 +90,15 @@ public class Sprite extends Rect {
         this.scale = scale;
     }
 
-    public void destroy(){
-
+    public void destroy() {
         isDestroyed = true;
     }
 
-    public void flushDestroy(){
-
+    public void flushDestroy() {
         isDestroyed = false;
     }
 
     public boolean isDestroyed() {
-
         return isDestroyed;
     }
 }
