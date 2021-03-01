@@ -7,10 +7,11 @@ import com.badlogic.gdx.math.Vector2;
 import ru.geekbrains.base.BaseShip;
 import ru.geekbrains.math.Rect;
 import ru.geekbrains.pull.BulletPool;
+import ru.geekbrains.pull.ExplosionPool;
 
 public class MainShip extends BaseShip {
 
-    private static final float HEIGHT = 0.1f;
+    private static final float HEIGHT = 0.07f;
     private static final float PADDING = 0.1f;
     private static final int INVALID_POINTER = -1;
 
@@ -18,11 +19,12 @@ public class MainShip extends BaseShip {
     private int rightPointer = INVALID_POINTER;
 
 
-    public MainShip(TextureAtlas atals, BulletPool bulletPool) {
+    public MainShip(TextureAtlas atals, BulletPool bulletPool, ExplosionPool explosionPool) {
 
         super(atals.findRegion("main_ship"), 1, 2, 2);
         this.bulletPool = bulletPool;
         this.bulletRegion = atals.findRegion("bulletMainShip");
+        this.explosionPool = explosionPool;
         v = new Vector2();
         v0 = new Vector2(0.5f, 0);
         bulletV = new Vector2(0, 0.5f);
@@ -97,10 +99,18 @@ public class MainShip extends BaseShip {
         bulletSound.dispose();
     }
 
+    public boolean isBulletCollision(Rect bullet) {
+
+        return !(bullet.getRight() < getLeft()
+                || bullet.getLeft() > getRight()
+                || bullet.getBottom() > pos.y
+                || bullet.getTop() < getBottom());
+    }
+
     @Override
     public void resize(Rect worldBounds) {
 
-        setHightProportions(HEIGHT);
+        setHeightProportion(HEIGHT);
         setBottom(worldBounds.getBottom() + PADDING);
         this.worldBounds = worldBounds;
     }
@@ -110,18 +120,18 @@ public class MainShip extends BaseShip {
         super.update(delta);
         bulletPos.set(pos.x, pos.y + getHalfHeight());
         if (getRight() > worldBounds.getRight()) {
-            setRight(worldBounds.getRight());
+            setRight(worldBounds.getRight()-getHalfWidth());
             stop();
         }
         if (getLeft() < worldBounds.getLeft()) {
-            setLeft(worldBounds.getLeft());
+            setLeft(worldBounds.getLeft()+getHalfWidth());
             stop();
         }
     }
 
     @Override
-    public void setHightProportions(float height) {
-        super.setHightProportions(height);
+    public void setHeightProportion(float height) {
+        super.setHeightProportion(height);
     }
 
 

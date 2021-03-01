@@ -35,7 +35,7 @@ public class Sprite extends Rect {
 
     }
 
-    public void setHightProportions(float height) {
+    public void setHeightProportion(float height) {
 
 
 

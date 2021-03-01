@@ -10,23 +10,23 @@ import ru.geekbrains.sprite.EnemyShip;
 
 public class EnemyEmitter {
 
-    private static final float ENEMY_SMALL_HEIGHT = 0.1f;
+    private static final float ENEMY_SMALL_HEIGHT = 0.06f;
     private static final float ENEMY_SMALL_BULLET_HEIGHT = 0.01f;
     private static final int ENEMY_SMALL_BULLET_DAMAGE = 1;
     private static final float ENEMY_SMALL_RELOAD_INTERVAL = 0.5f;
-    private static final int ENEMY_SMALL_HP = 1;
+    private static final int ENEMY_SMALL_HP = 5;
 
-    private static final float ENEMY_MEDIUM_HEIGHT = 0.15f;
-    private static final float ENEMY_MEDIUM_BULLET_HEIGHT = 0.02f;
+    private static final float ENEMY_MEDIUM_HEIGHT = 0.08f;
+    private static final float ENEMY_MEDIUM_BULLET_HEIGHT = 0.015f;
     private static final int ENEMY_MEDIUM_BULLET_DAMAGE = 2;
     private static final float ENEMY_MEDIUM_RELOAD_INTERVAL = 1f;
-    private static final int ENEMY_MEDIUM_HP = 2;
+    private static final int ENEMY_MEDIUM_HP = 10;
 
-    private static final float ENEMY_BIG_HEIGHT = 0.2f;
-    private static final float ENEMY_BIG_BULLET_HEIGHT = 0.03f;
+    private static final float ENEMY_BIG_HEIGHT = 0.1f;
+    private static final float ENEMY_BIG_BULLET_HEIGHT = 0.02f;
     private static final int ENEMY_BIG_BULLET_DAMAGE = 3;
     private static final float ENEMY_BIG_RELOAD_INTERVAL = 2f;
-    private static final int ENEMY_BIG_HP = 3;
+    private static final int ENEMY_BIG_HP = 20;
 
     private final Vector2 enemySmallV = new Vector2(0, -0.2f);
     private final Vector2 enemyMEDIUMV = new Vector2(0, -0.15f);
