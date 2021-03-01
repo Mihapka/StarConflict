@@ -6,12 +6,11 @@ import com.badlogic.gdx.math.Vector2;
 import ru.geekbrains.base.BaseShip;
 import ru.geekbrains.math.Rect;
 import ru.geekbrains.pull.BulletPool;
-import ru.geekbrains.pull.ExplosionPool;
 
 
 public class EnemyShip extends BaseShip {
 
-    public EnemyShip(BulletPool bulletPool, Rect worldBounds, ExplosionPool explosionPool) {
+    public EnemyShip(BulletPool bulletPool, Rect worldBounds, ru.geekbrains.pool.ExplosionPool explosionPool) {
 
         this.bulletPool = bulletPool;
         this.worldBounds = worldBounds;
@@ -20,7 +19,7 @@ public class EnemyShip extends BaseShip {
         v0 = new Vector2();
         bulletPos = new Vector2();
         bulletV = new Vector2();
-        bulletSound = Gdx.audio.newSound(Gdx.files.internal("sounds/bullet.wav"));
+        sound = Gdx.audio.newSound(Gdx.files.internal("sounds/bullet.wav"));
     }
 
     @Override

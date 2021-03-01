@@ -5,9 +5,9 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import ru.geekbrains.math.Rect;
 import ru.geekbrains.pull.BulletPool;
-import ru.geekbrains.pull.ExplosionPool;
 import ru.geekbrains.sprite.Bullet;
 import ru.geekbrains.sprite.Explosion;
+import ru.geekbrains.pool.ExplosionPool;
 
 public class BaseShip extends Sprite {
 
@@ -25,7 +25,7 @@ public class BaseShip extends Sprite {
 
     protected boolean pressLeft;
     protected boolean pressRight;
-    protected Sound bulletSound;
+    protected Sound sound;
     protected float bulletHeight;
     protected int damage;
 
@@ -51,7 +51,7 @@ public class BaseShip extends Sprite {
 
         Bullet bullet = bulletPool.obtain();
         bullet.set(this, bulletRegion, bulletPos, bulletV, bulletHeight, worldBounds, 1);
-        bulletSound.play(0.04f);
+        sound.play(0.04f);
     }
 
     private void boom() {
