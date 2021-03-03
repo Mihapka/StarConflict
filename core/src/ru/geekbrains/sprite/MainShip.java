@@ -6,7 +6,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import ru.geekbrains.base.BaseShip;
 import ru.geekbrains.math.Rect;
-import ru.geekbrains.pool.ExplosionPool;
+import ru.geekbrains.pull.ExplosionPool;
 import ru.geekbrains.pull.BulletPool;
 
 public class MainShip extends BaseShip {
@@ -35,7 +35,7 @@ public class MainShip extends BaseShip {
         damage = 1;
         reloadInterval = 0.2f;
         sound = Gdx.audio.newSound(Gdx.files.internal("sounds/laser.wav"));
-        hp = 100;
+        hp = 1;
     }
 
     @Override

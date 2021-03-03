@@ -4,7 +4,7 @@ import com.badlogic.gdx.audio.Sound;
 import ru.geekbrains.base.SpritesPool;
 import ru.geekbrains.math.Rect;
 import ru.geekbrains.sprite.EnemyShip;
-import ru.geekbrains.pool.ExplosionPool;
+
 
 public class EnemyPool extends SpritesPool<EnemyShip> {
 
@@ -18,7 +18,6 @@ public class EnemyPool extends SpritesPool<EnemyShip> {
         this.explosionPool = explosionPool;
         this.worldBounds = worldBounds;
         this.bulletsound = bulletsound;
-
     }
 
     @Override

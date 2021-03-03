@@ -5,9 +5,9 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import ru.geekbrains.math.Rect;
 import ru.geekbrains.pull.BulletPool;
+import ru.geekbrains.pull.ExplosionPool;
 import ru.geekbrains.sprite.Bullet;
 import ru.geekbrains.sprite.Explosion;
-import ru.geekbrains.pool.ExplosionPool;
 
 public class BaseShip extends Sprite {
 
@@ -23,8 +23,6 @@ public class BaseShip extends Sprite {
     protected Vector2 bulletV;
     protected Vector2 bulletPos;
 
-    protected boolean pressLeft;
-    protected boolean pressRight;
     protected Sound sound;
     protected float bulletHeight;
     protected int damage;
