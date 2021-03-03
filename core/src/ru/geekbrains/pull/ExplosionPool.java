@@ -1,4 +1,4 @@
-package ru.geekbrains.pool;
+package ru.geekbrains.pull;
 
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;

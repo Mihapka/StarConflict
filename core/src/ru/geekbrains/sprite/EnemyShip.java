@@ -10,7 +10,7 @@ import ru.geekbrains.pull.BulletPool;
 
 public class EnemyShip extends BaseShip {
 
-    public EnemyShip(BulletPool bulletPool, Rect worldBounds, ru.geekbrains.pool.ExplosionPool explosionPool) {
+    public EnemyShip(BulletPool bulletPool, Rect worldBounds, ru.geekbrains.pull.ExplosionPool explosionPool) {
 
         this.bulletPool = bulletPool;
         this.worldBounds = worldBounds;
