@@ -26,7 +26,7 @@ public class Logo extends Sprite {
     @Override
     public void resize(Rect worldBounds) {
 
-        setHightProportions(HIGHT);
+        setHeightProportion(HIGHT);
     }
 
     @Override

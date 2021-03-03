@@ -14,7 +14,6 @@ public abstract class BaseButton extends Sprite {
         super(region);
     }
 
-
     @Override
     public boolean touchDown(Vector2 tourch, int pointer, int button) {
 

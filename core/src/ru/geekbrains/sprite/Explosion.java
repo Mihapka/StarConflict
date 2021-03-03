@@ -3,6 +3,7 @@ package ru.geekbrains.sprite;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
+
 import ru.geekbrains.base.Sprite;
 
 public class Explosion extends Sprite {
@@ -10,30 +11,28 @@ public class Explosion extends Sprite {
     private static final float ANIMATE_INTERVAL = 0.017f;
 
     private float animateTimer;
-    private Sound exploSound;
+    private Sound sound;
 
-    public Explosion(TextureAtlas atlas, Sound exploSound) {
-
+    public Explosion(TextureAtlas atlas, Sound sound) {
         super(atlas.findRegion("explosion"), 9, 9, 74);
-        this.exploSound = exploSound;
+        this.sound = sound;
     }
 
     public void set(float height, Vector2 pos) {
         setHeightProportion(height);
         this.pos.set(pos);
-        exploSound.play();
+        sound.play();
     }
 
     @Override
     public void update(float delta) {
         animateTimer += delta;
-        if (animateTimer > ANIMATE_INTERVAL) {
+        if (animateTimer >= ANIMATE_INTERVAL) {
             animateTimer = 0f;
             if (++frame == regions.length) {
                 destroy();
             }
         }
-        super.update(delta);
     }
 
     @Override
