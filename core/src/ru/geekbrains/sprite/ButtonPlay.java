@@ -1,9 +1,7 @@
 package ru.geekbrains.sprite;
 
 import com.badlogic.gdx.Game;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import ru.geekbrains.Screen.GameScreene;
 import ru.geekbrains.base.BaseButton;
 import ru.geekbrains.math.Rect;
@@ -24,7 +22,7 @@ public class ButtonPlay extends BaseButton {
     @Override
     public void resize(Rect worldBounds) {
 
-        setHightProportions(HEIGHT);
+        setHeightProportion(HEIGHT);
         setBottom(worldBounds.getBottom() + PADDING);
         setLeft(worldBounds.getLeft() + PADDING);
     }

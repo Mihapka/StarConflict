@@ -11,19 +11,24 @@ public class Star extends Sprite {
     private static final float MAXSIZE = 0.04f;
     private static final float MINSAZE = 0.001f;
 
-    private final Vector2 v;
+    protected final Vector2 v;
     private Rect worldBounds;
 
     public Star(TextureAtlas atlas) {
         super(atlas.findRegion("star"));
-        setHightProportions(Rnd.nextFloat(MAXSIZE, MINSAZE));
+        setHeightProportion(Rnd.nextFloat(MAXSIZE, MINSAZE));
         v = new Vector2(Rnd.nextFloat(0.001f, 0.001f), getHeight() * -2);
     }
 
     @Override
     public void update(float delta) {
-        super.update(delta);
+
         pos.mulAdd(v, delta);
+        checkBounds();
+    }
+
+    public void checkBounds(){
+
         if (getRight() < worldBounds.getLeft()) {
             setLeft(worldBounds.getRight());
         }

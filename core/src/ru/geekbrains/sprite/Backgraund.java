@@ -14,6 +14,6 @@ public class Backgraund extends Sprite {
     @Override
     public void resize(Rect worldBounds) {
         this.pos.set(worldBounds.pos);
-        setHightProportions(worldBounds.getHeight());
+        setHeightProportion(worldBounds.getHeight());
     }
 }
