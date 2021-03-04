@@ -37,7 +37,6 @@ public class BaseScreen implements Screen, InputProcessor {
         worldToGl = new Matrix4();
         screenToWorld = new Matrix3();
         tourch = new Vector2();
-
     }
 
     @Override

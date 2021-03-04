@@ -14,6 +14,7 @@ public class MainShip extends BaseShip {
     private static final float HEIGHT = 0.15f;
     private static final float PADDING = 0.05f;
     private static final int INVALID_POINTER = -1;
+    private static final int HP = 100;
 
     private boolean pressedLeft;
     private boolean pressedRight;
@@ -35,7 +36,19 @@ public class MainShip extends BaseShip {
         damage = 1;
         reloadInterval = 0.2f;
         sound = Gdx.audio.newSound(Gdx.files.internal("sounds/laser.wav"));
-        hp = 1;
+        hp = HP;
+    }
+
+    public void startNewGame(){
+
+        hp = HP;
+        pressedLeft = false;
+        pressedRight = false;
+        leftPointer = INVALID_POINTER;
+        rightPointer = INVALID_POINTER;
+        stop();
+        pos.x = worldBounds.pos.x;
+        flushDestroy();
     }
 
     @Override

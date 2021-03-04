@@ -18,15 +18,11 @@ public class BaseShip extends Sprite {
     protected Vector2 v;
 
     protected Rect worldBounds;
-    protected BulletPool bulletPool;
     protected ExplosionPool explosionPool;
+    protected BulletPool bulletPool;
     protected TextureRegion bulletRegion;
     protected Vector2 bulletV;
     protected Vector2 bulletPos;
-
-    protected boolean pressLeft;
-    protected boolean pressRight;
-    protected Sound sound;
     protected float bulletHeight;
     protected int damage;
 
@@ -35,30 +31,35 @@ public class BaseShip extends Sprite {
 
     protected int hp;
 
+    protected Sound sound;
+
     private float damageAnimateTimer = DAMAGE_ANIMATE_INTERVAL;
 
-
     public BaseShip() {
-
     }
 
     public BaseShip(TextureRegion region, int rows, int cols, int frames) {
-
         super(region, rows, cols, frames);
-
     }
 
-    private void shoot() {
-
-        Bullet bullet = bulletPool.obtain();
-        bullet.set(this, bulletRegion, bulletPos, bulletV, bulletHeight, worldBounds, 1);
-        sound.play(0.04f);
+    @Override
+    public void update(float delta) {
+        pos.mulAdd(v, delta);
+        reloadTimer += delta;
+        if (reloadTimer >= reloadInterval) {
+            reloadTimer = 0f;
+            shoot();
+        }
+        damageAnimateTimer += delta;
+        if (damageAnimateTimer >= DAMAGE_ANIMATE_INTERVAL) {
+            frame = 0;
+        }
     }
 
-    private void boom() {
-
-        Explosion explosion = explosionPool.obtain();
-        explosion.set(getHeight(), pos);
+    @Override
+    public void destroy() {
+        super.destroy();
+        boom();
     }
 
     public void damage(int damage) {
@@ -75,25 +76,26 @@ public class BaseShip extends Sprite {
         return damage;
     }
 
-    @Override
-    public void update(float delta) {
-        pos.mulAdd(v, delta);
-        reloadTimer += delta;
-        if (reloadTimer >= reloadInterval) {
-            reloadTimer = 0f;
-            shoot();
-        }
-
-        damageAnimateTimer += delta;
-        if (damageAnimateTimer >= DAMAGE_ANIMATE_INTERVAL) {
-            frame = 0;
-        }
+    public int getHp() {
+        return hp;
     }
 
-    @Override
-    public void destroy() {
+    public Vector2 getV0() {
+        return v0;
+    }
 
-        super.destroy();
-        boom();
+    public Vector2 getV() {
+        return v;
+    }
+
+    private void shoot() {
+        Bullet bullet = bulletPool.obtain();
+        bullet.set(this, bulletRegion, bulletPos, bulletV, bulletHeight, worldBounds, damage);
+        sound.play();
+    }
+
+    private void boom() {
+        Explosion explosion = explosionPool.obtain();
+        explosion.set(getHeight(), pos);
     }
 }
