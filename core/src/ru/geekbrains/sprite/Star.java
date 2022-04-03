@@ -8,7 +8,7 @@ import ru.geekbrains.math.Rnd;
 
 public class Star extends Sprite {
 
-    private static final float MAXSIZE = 0.04f;
+    private static final float MAXSIZE = 0.02f;
     private static final float MINSAZE = 0.001f;
 
     protected final Vector2 v;
@@ -17,7 +17,7 @@ public class Star extends Sprite {
     public Star(TextureAtlas atlas) {
         super(atlas.findRegion("star"));
         setHeightProportion(Rnd.nextFloat(MAXSIZE, MINSAZE));
-        v = new Vector2(Rnd.nextFloat(0.001f, 0.001f), getHeight() * -2);
+        v = new Vector2(Rnd.nextFloat(0.001f, 0.001f), getHeight() * -1);
     }
 
     @Override

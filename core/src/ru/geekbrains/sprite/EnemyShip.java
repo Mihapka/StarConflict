@@ -30,7 +30,7 @@ public class EnemyShip extends BaseShip {
         }
         if (getLeft() < worldBounds.getLeft()) {
             setLeft(worldBounds.getLeft());
-            setLeft(worldBounds.getLeft() + getHalfWidth());
+            setLeft(worldBounds.getLeft() );
         }
 
         if (getTop() > worldBounds.getTop()) {
